@@ -43,7 +43,7 @@ namespace TaskManagerAPI.Controllers
         [Route("{id}")]
         [ProducesResponseType(typeof(ResponseTaskJson), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status404NotFound)]
         public IActionResult GetById([FromRoute] int id)
         {
             var response = new GetByIdUseCase().Execute(id);
@@ -56,7 +56,7 @@ namespace TaskManagerAPI.Controllers
         [HttpPut]
         [Route("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status404NotFound)]
         public IActionResult EditTask([FromRoute] int id, [FromBody] RequestTaskJson request)
         {
             var useCase = new EditTaskUseCase();
@@ -72,7 +72,7 @@ namespace TaskManagerAPI.Controllers
         [HttpDelete]
         [Route("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status404NotFound)]
         public IActionResult DeleteTask([FromRoute] int id)
         {
 
